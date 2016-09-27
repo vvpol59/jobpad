@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="jobpadApp">
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="angular-1.2.30.js"></script>
     <link rel="stylesheet" type="text/css" href="ng-ui-dialog/ng-ui-dialog.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/job-pad.css">
+    <script src="angular/angular-1.2.30.js"></script>
+    <script src="ng-ui-dialog/ng-ui-dialog.js"></script>
+    <script src="js/job-pad.js"></script>
+    <script src="js/job-pad-services.js"></script>
     <style>
         *   {
             padding: 0;
@@ -35,78 +41,93 @@
         .desk-top-content  {
             display: table-row;
             height: 100%;
-            background-color: #a0a0ff;
+            background-color: #99d9ea;
         }
         .desk-top-task-bar  {
-            background-color: #8080ff;
+            background-color: #8194aa;
             height: 48px;
         }
     </style>
 </head>
-<body ng-controller="JobpadController">
+<body ng-controller="jobPadController">
 <div class="desk-top">
     <div class="desk-top-content">
-sdsds
-    </div>
-<div class="desk-top-task-bar">
-sdsds
-</div>
-</div>
-<!-- table full class="desktop-container">
-    <tr>
-        <td colspan="2" class="desktop-top" ng-click="hideStartMenu()">
-
-            <div class="desktop-label" ng-repeat="i in labels" ng-dblclick="labelClick(i)">
-                {{i.name}}
-            </div>
-            <div class="desktop-win" ng-repeat="i in desk">
-                <table>
-                    <tr>
-                        <td class="desktop-win-top">
-                            <div class="desktop-win-title">{{i.name}}</div>
-                            <div class="desktop-win-turn"></div>
-                            <div class="desktop-win-close"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="desktop-win-body"></td>
-                    </tr>
-
-                </table>
-            </div>
-
-            <table class="desktop-start-box" ng-show="showStartMenu">
-                <tr ng-repeat="i in startMenu">
-                    <td><a ng-click="startMenuClick(i)">{{i.name}}</a></td>
+        <!-- Список проектов ----->
+        <div ng-ui-dialog class="dialog-body" data-uid="1"
+             data-params='{"draggable": true, "resizable":true, "title": "Проекты", "close-btn": true}'>
+            <table>
+                <tr>
+                    <td>
+                        <table class="table-data">
+                            <tr class="table-data-header">
+                                <td>№</td>
+                                <td>Проект</td>
+                                <td>Дата начала</td>
+                                <td>Статус</td>
+                            </tr>
+                            <tr class="data-row" ng-repeat="project in projects">
+                                <td>{{$index}}</td>
+                                <td>{{project.name}}</td>
+                                <td>{{project.begin}}</td>
+                                <td>{{project.status}}</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div>
+                            <table class="table-data">
+                                <tr class="table-data-header">
+                                    <td colspan="2">Задачи</td>
+                                </tr>
+                                <tr class="table-data-header">
+                                    <td>Наименование</td>
+                                    <td>Статус</td>
+                                </tr>
+                                <tr ng-repeat="job in jobs">
+                                    <td>{{job.name}}</td>
+                                    <td>{{job.status}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            Исполнители
+                        </div>
+                    </td>
                 </tr>
             </table>
-            <div>
+            <button ng-click="addProject()">test</button>
+        </div>
+        <div ng-ui-dialog class="dialog-body" data-uid="prj-card"
+             data-params='{"modal":true, "resizable":false, "title": "Карточка проекта"}'>
+            <div class="input-item">
+                <label>Название</label>
+                <input type="text">
             </div>
-        </td>
-    </tr>
-    <tr>
-        <td class="desktop-task-start">
-            <div class="desktop-start" ng-click="$event.stopPropagation();startClick()">start</div>
-        </td>
-        <td class="desktop-task-bar" ng-click="hideStartMenu()"></td>
-    </tr>
-</table>
-<div class="desktop-start-box"></div>
+            <div class="input-item">
+                <label>Описание</label>
+                <input type="text">
+            </div>
+            <div class="input-item">
+                <label>Отчество</label>
+                <input type="text">
+            </div>
+            <div class="input-item">
+                <label>Телефон</label>
+                <input type="text">
+            </div>
+            <div class="input-item">
+                <button>Сохранить</button>
+                <button ng-click="closeDialog(1)">Закрыть</button>
+            </div>
 
-<div class="desktop-win">
-    <table>
-        <tr>
-            <td class="desktop-win-top">
-                <div class="desktop-win-title">Заголовок</div>
-                <div class="desktop-win-turn"></div>
-                <div class="desktop-win-close"></div>
-            </td>
-        </tr>
-        <tr>
-            <td class="desktop-win-body"></td>
-        </tr>
 
-    </table -->
 
+        </div>
+
+    </div>
+<div class="desk-top-task-bar">
+
+</div>
+</div>
 </body>
 </html>

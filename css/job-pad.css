@@ -1,0 +1,18 @@
+.table-data {
+    background-color: #ffffff;
+    border-color: #a0a0a0;
+    border-width: 1px 0 0 1px;
+    border-style: solid;
+}
+.table-data td  {
+    padding: 2px 4px;
+    border-width: 0 1px 1px 0;
+    border-color: #a0a0a0;
+    border-style: solid;}
+.table-data-header td {
+    font-weight: 600;
+    padding: 2px 4px;
+}
+.data-row:hover   {
+    background-color: #99d9ea;
+}
