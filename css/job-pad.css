@@ -1,3 +1,33 @@
+.input-item {
+    padding: 8px;
+}
+.input-item label   {
+    width: 80px;
+    display: inline-block;
+}
+.dialog-body    {
+    background-color: #e0e0e0;
+    border: 1px solid #909090;
+    padding: 2px;
+    margin-top: 2px;
+}
+html, body    {
+    height: 100%;
+}
+.desk-top   {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+.desk-top-content  {
+    display: table-row;
+    height: 100%;
+    background-color: #99d9ea;
+}
+.desk-top-task-bar  {
+    background-color: #8194aa;
+    height: 48px;
+}
 .table-data {
     background-color: #ffffff;
     border-color: #a0a0a0;
@@ -15,4 +45,28 @@
 }
 .data-row:hover   {
     background-color: #99d9ea;
+}
+.dialog-body textarea  {
+    display: block;
+}
+.dialog-list    {
+    background-color: #ffffff;
+}
+.dialog-frame   {
+    border: 1px solid #ffffff;
+    margin: 4px;
+    padding: 4px;
+}
+.start-btn  {
+    display: inline;
+}
+.task-bar{
+    display: inline;
+}
+#start-menu {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 4px;
+    border: 2px solid #909090;
 }

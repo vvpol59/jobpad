@@ -12,42 +12,6 @@
     <script src="ng-ui-dialog/ng-ui-dialog.js"></script>
     <script src="js/job-pad.js"></script>
     <script src="js/job-pad-services.js"></script>
-    <style>
-        *   {
-            padding: 0;
-            margin: 0;
-        }
-        .input-item {
-            padding: 8px;
-        }
-        .input-item label   {
-            width: 80px;
-            display: inline-block;
-        }
-        .dialog-body    {
-            background-color: #e0e0e0;
-            border: 1px solid #909090;
-            padding: 2px;
-            margin-top: 2px;
-        }
-        html, body    {
-            height: 100%;
-        }
-        .desk-top   {
-            display: table;
-            height: 100%;
-            width: 100%;
-        }
-        .desk-top-content  {
-            display: table-row;
-            height: 100%;
-            background-color: #99d9ea;
-        }
-        .desk-top-task-bar  {
-            background-color: #8194aa;
-            height: 48px;
-        }
-    </style>
 </head>
 <body ng-controller="jobPadController">
 <div class="desk-top">
@@ -101,27 +65,30 @@
              data-params='{"modal":true, "resizable":false, "title": "Карточка проекта"}'>
             <div class="input-item">
                 <label>Название</label>
-                <input type="text">
+                <input type="text" value="{{}}">
             </div>
             <div class="input-item">
                 <label>Описание</label>
-                <input type="text">
+                <textarea>{{}}</textarea>
             </div>
             <div class="input-item">
-                <label>Отчество</label>
-                <input type="text">
+                <label>Статус</label>
+                <select>
+                    <option ng-repeat="state in states" value="{{state.code}}">{{state.name}}</option>
+                </select>
+
             </div>
             <div class="input-item">
-                <label>Телефон</label>
-                <input type="text">
+                <label>Файлы</label>
+                <ul>
+                    <li>
+                        Файл 1
+                    </li>
+                    <li>
+                        Файл 2
+                    </li>
+                </ul>
             </div>
-            <div class="input-item">
-                <button>Сохранить</button>
-                <button ng-click="closeDialog(1)">Закрыть</button>
-            </div>
-
-
-
         </div>
 
     </div>

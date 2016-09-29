@@ -14,7 +14,10 @@
             jobs: [
                 {name: 'Задача 1', status: 'current'},
                 {name: 'Задача 2', status: 'current'}
-        ]
+        ],
+            startMenu: [
+                {name: 'Проекты'}
+            ]
         }
     });
 })();

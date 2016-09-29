@@ -62,34 +62,19 @@ var angularApp = angular.module('jobpadApp', ['dialogApp']);
         console.log('controller');
         $scope.projects = dataServices.projects;
         $scope.jobs = dataServices.jobs;
-        $scope.showDialog1 = true;
+        $scope.startMenu = dataServices.startMenu;
         /**
          * Управление видимостью диалога
          * @param show
          * @param uidDialog
          */
-        function toggleDialog(show, uidDialog){
-            var trigger = new CustomEvent("show-dialog", {
-                detail: {
-                    uidDialog: uidDialog,
-                    $scope: $scope,
-                    show: show
-                }
-            });
-            document.dispatchEvent(trigger);
-        }
-        // Показать диалог с uidDialog
-        $scope.showDialog = function(uidDialog) {
-            toggleDialog(true, uidDialog)
-        };
-        // Скрыть диалог с uidDialog
-        $scope.closeDialog = function(uidDialog){
-            toggleDialog(false, uidDialog)
+        $scope.toggleDialog = function(show, uidDialog){
+            $scope.dialogsVisible[uidDialog] = show;
         };
 
-        $scope.addProject = function(){
-            $scope.projects.push({name: 'ещё строка', begin: '1.1.16', status: 'closed'})
-        }
+        $scope.showStartMenu = function(){
+            $scope.visibleStartMenu = true;
+        };
     });
 
 })();
