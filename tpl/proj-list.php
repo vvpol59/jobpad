@@ -1,13 +1,13 @@
 <?php
 /**
- * Списое проектов
+ * Список проектов
  * User: vvpol
  * Date: 28.09.2016
  * Time: 22:04
  */
 ?>
-<div ng-ui-dialog class="dialog-body" data-uid="1"
-     data-params='{"draggable": true, "resizable":true, "title": "Проекты", "close-btn": true}'>
+<div ng-ui-dialog class="dialog-body" data-uid="proj-list"
+     data-params='{"draggable": true, "resizable":true, "title": "Проекты", "close-btn": true, "modal": false}'>
     <table>
         <tr>
             <td>

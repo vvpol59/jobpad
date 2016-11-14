@@ -6,7 +6,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html ng-app="jobpadApp">
+<html ng-app="jobpadApp" ng-init="init(1)">
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
@@ -18,20 +18,39 @@
     <script src="ng-ui-dialog/ng-ui-dialog.js"></script>
     <script src="js/job-pad.js"></script>
     <script src="js/job-pad-services.js"></script>
+    <style>
+        .desk-top-label {
+            display: inline-block;
+            height: 64px;
+            width: 64px;
+            background-color: #99d9ea;
+        }
+        .desk-top-label .icon   {
+            height: 48px;
+            width: 48px;
+            background-color: bisque;
+        }
+
+    </style>
 </head>
-<body ng-controller="jobPadController">
+<body ng-controller="jobPadController"  ng-init="init(2)">
 <div class="desk-top">
-    <ul id="start-menu" ng-show="visibleStartMenu">
-        <li ng-repeat="item in startMenu" class="start-menu-item">
-            {{item.name}}
-        </li>
-    </ul>
-    <div class="desk-top-content">
+    <div class="desk-top-content">&nbsp;
+        <div label class="desk-top-label" ng-repeat="label in labels">
+            <div class="icon"></div>
+            <div>{{label.name}}</div>
+        </div>
         <?php
         include 'tpl/proj-list.php';
         include 'tpl/proj-card.php';
+        include 'tpl/employee-list.php';
 
         ?>
+        <ul id="start-menu" ng-show="visibleStartMenu">
+            <li ng-repeat="item in startMenu" class="start-menu-item" ng-click="mainMenuClick(item)">
+                {{item.name}}
+            </li>
+        </ul>
     </div>
     <div class="desk-top-task-bar">
         <div class="start-btn"><button ng-click="showStartMenu()">Start</button></div>

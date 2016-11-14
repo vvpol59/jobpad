@@ -16,8 +16,19 @@
                 {name: 'Задача 2', status: 'current'}
         ],
             startMenu: [
-                {name: 'Проекты'}
+                {name: 'Сотрудники', code: 'employee-list'},
+                {name: 'Проекты', code: 'proj-list'}
+            ],
+            labels: [
+                {name: 'label 1'},
+                {name: 'label 2'}
+            ],
+            employees: [
+                {name: "test 1", email: "email 1"},
+                {name: "test 2", email: "email 2"},
+                {name: "test 3", email: "email 3"}
             ]
         }
+
     });
 })();
