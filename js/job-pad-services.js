@@ -20,14 +20,23 @@
                 {name: 'Проекты', code: 'proj-list'}
             ],
             labels: [
-                {name: 'label 1'},
-                {name: 'label 2'}
+                {name: 'label 1', pos: 1},
+                {name: 'label 11', pos: 100},
+                {name: 'label 2', pos: 3}
             ],
             employees: [
                 {name: "test 1", email: "email 1"},
                 {name: "test 2", email: "email 2"},
                 {name: "test 3", email: "email 3"}
-            ]
+            ],
+            fun: {
+                projectList: {
+                    show: function(){
+                        $scope.toggleDialog(true, 'proj-list');
+                    }
+                }
+
+            }
         }
 
     });

@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="css/job-pad.css">
     <script src="angular/angular-1.2.30.js"></script>
     <script src="ng-ui-dialog/ng-ui-dialog.js"></script>
+    <script src="js/ng-ui-draggable.js"></script>
     <script src="js/job-pad.js"></script>
     <script src="js/job-pad-services.js"></script>
     <style>
@@ -36,7 +37,7 @@
 <body ng-controller="jobPadController"  ng-init="init(2)">
 <div class="desk-top">
     <div class="desk-top-content">&nbsp;
-        <div label class="desk-top-label" ng-repeat="label in labels">
+        <div ng-ui-draggable='{"stop-broadcast":"label-drag-end","containment":"parent"}' class="desk-top-label" ng-repeat="label in labels" data-id="{{$index}}">
             <div class="icon"></div>
             <div>{{label.name}}</div>
         </div>
