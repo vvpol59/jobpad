@@ -8,7 +8,7 @@ var angularApp = angular.module('jobpadApp', ['dialogApp', 'draggableApp']);
     /**
      * ---------- Контроллер -------------
      */
-    window.angularApp.controller('jobPadController', function($scope, dataServices){
+var controller = function($scope, dataServices){
         var _this = this,
             $deskTopContent = angular.element(document.getElementsByClassName('desk-top-content')[0]),
             deskTopCols = parseInt($deskTopContent.prop('offsetWidth') / 64),
@@ -28,54 +28,35 @@ var angularApp = angular.module('jobpadApp', ['dialogApp', 'draggableApp']);
                 show: function(){
                     $scope.toggleDialog(true, 'employee-list');
                 }
-            },
-            fun = dataServices.fun;
-        $scope.projects = dataServices.projects;
+            };
         $scope.jobs = dataServices.jobs;
         $scope.startMenu = dataServices.startMenu;
         $scope.labels = dataServices.labels;
         $scope.dialogsVisible = {};
-
+        $scope.visibleProjList = false;
+        $scope.tasks = [];
+        $scope.winClose = winClose;
+        $scope.winMinimize = winMinimize;
         /**
-         * Открыть диалог
-         * @param uidDialog
-         * @param data
+         * Управление видимостью стартового меню
+         * @param visible
          */
-        $scope.openDialog = function(uidDialog, data){
-
-        };
-        /**
-         * Управление видимостью диалога
-         * @param show
-         * @param uidDialog
-         */
-        $scope.toggleDialog = function(show, uidDialog){
-            $scope.dialogsVisible[uidDialog] = show;
-        };
         $scope.showStartMenu = function(visible){
             if (visible == undefined) visible = true;
             $scope.visibleStartMenu = visible;
         };
-        $scope.init = function(v){
-         //   $scope.toggleDialog(true, 1);
-        };
+      //  $scope.init = function(v){
+            //   $scope.toggleDialog(true, 1);
+      //  };
 
         /**
          * Выбор в стартовом меню
          * @param params
          */
         $scope.mainMenuClick = function(params){
-            $scope.showStartMenu(false);
-            if(params.code == 'proj-list'){
-                fun.projectList.show();
-                projectList.show();
-            } else if (params.code == 'employee-list') {
-                employeeList.show();
-            }
+            $scope.$broadcast(params.code, {mode: 'open'});
         };
-        //function addLabel(data){
-        //    $scope.labels.push({name: 'label next'});
-        //}
+
         /**
          * Формирование списка занятых позиций для ярлыков
          * @param label
@@ -86,6 +67,7 @@ var angularApp = angular.module('jobpadApp', ['dialogApp', 'draggableApp']);
             label.id = index;
             return '';
         };
+
 
         // Расстановка ярлыков по местам
         function setLabels(){
@@ -99,17 +81,7 @@ var angularApp = angular.module('jobpadApp', ['dialogApp', 'draggableApp']);
                 lab.css({top: (row * 64) + 'px', left: (col * 64) + 'px'});
             }
         }
-        window.onload = function(){
-            // После полной отработки всех скриптов
-            document.addEventListener('click', function(){
-                $scope.showStartMenu(false);
-                $scope.$apply();
-            }, true);
-            setLabels();
-            $scope.$apply(function() {
-            });
-        };
-        $scope.$on('label-drag-end', labelDragEnd);
+
         /**
          * Конец перетаскивания ярлыка. корректируем положение
          * @param e
@@ -136,12 +108,71 @@ var angularApp = angular.module('jobpadApp', ['dialogApp', 'draggableApp']);
                 label.css({top: (row * 64) + 'px', left: (col * 64) + 'px'});
                 $scope.labels[index].pos = newPos;
             }
-
-
-         //   console.log(label);
         }
-        console.log(this);
-    });
+
+        /**
+         * Закрыть окно
+         * @param code
+         * @param id
+         */
+        function winClose(code, id){
+            $scope.$broadcast(code, {id: id, mode: 'close'});
+        }
+
+        function winMinimize(code, id){
+            $scope.$broadcast(code, {id: id, mode: 'minmax'});
+        }
+
+        /**
+         * Обработка открытия окна
+         * @param e
+         * @param params
+         */
+        function winOpened(e, params){
+            $scope.tasks.push({name: params.name, code: params.code, id: params.id});
+        }
+
+        /**
+         * Обработка минимизации окна
+         * @param e
+         * @param params
+         */
+        function winMinimized(e, params){
+
+        }
+
+        /**
+         * Обработка закрытия окна
+         * Удаляет кнопку из таскбара
+         * @param e
+         * @param params
+         */
+        function winClosed(e, params){
+            for (var i = 0; i < $scope.tasks.length; i++){
+                if ($scope.tasks[i].code == params.code){
+                    $scope.tasks.splice(i, 1);
+                    break;
+                }
+            }
+        }
+
+        window.onload = function(){
+            // После полной отработки всех скриптов
+            document.addEventListener('click', function(){
+                $scope.showStartMenu(false);
+                $scope.$apply();
+            }, true);
+            setLabels();
+            $scope.$apply(function() {
+            });
+        };
+        $scope.$on('label-drag-end', labelDragEnd);
+        $scope.$on('win-opened', winOpened);
+        $scope.$on('win-minimised', winMinimized);
+        $scope.$on('win-closed', winClosed);
+    };
+
+    window.angularApp.controller('jobPadController', controller);
     /**
      * Директива ярлыка
      */

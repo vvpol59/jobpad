@@ -1,3 +1,6 @@
+body   {
+    font-family: Arial;
+}
 .input-item {
     padding: 8px;
 }
@@ -79,4 +82,53 @@ html, body    {
 .start-menu-item:hover    {
     background-color: #aaddff;
     outline: 1px solid #808080;
+}
+.task-button    {
+    background-color: #91a4ba;
+    display: inline-block;
+    font-size: 14px;
+    font-family: arial;
+    width: 150px;
+    border: 1px solid #b0b0b0;
+    border-radius: 4px;
+}
+.task-name  {
+    color: #f0f0ff;
+    padding: 4px 4px;
+    margin: 1px;
+    display: inline-block;
+    cursor: default;
+}
+
+.task-close {
+    float: right;
+    background-image: url("img/glyphicons.png");
+    background-position: 158px 1px;
+    height: 16px;
+    margin-top: 4px;
+    position: relative;
+    width: 16px;
+    cursor: pointer;
+    /* outline: 1px solid #dddddd; */
+    border-radius: 3px;
+    background-color: inherit;
+}
+.task-close:hover {
+    background-color: #99d9ea;
+}
+.dialog-minimize-btn    {
+    float: right;
+    background-image: url("img/glyphicons.png");
+    background-position: 37px 66px;
+    height: 16px;
+    margin-top: 4px;
+    position: relative;
+    width: 16px;
+    cursor: pointer;
+    /* outline: 1px solid #dddddd; */
+    border-radius: 3px;
+    background-color: inherit;
+}
+.dialog-minimize-btn:hover  {
+    background-color: #99d9ea;
 }

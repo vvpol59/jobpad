@@ -28,15 +28,7 @@
                 {name: "test 1", email: "email 1"},
                 {name: "test 2", email: "email 2"},
                 {name: "test 3", email: "email 3"}
-            ],
-            fun: {
-                projectList: {
-                    show: function(){
-                        $scope.toggleDialog(true, 'proj-list');
-                    }
-                }
-
-            }
+            ]
         }
 
     });
