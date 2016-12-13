@@ -29,6 +29,12 @@
                 {name: "test 2", email: "email 2"},
                 {name: "test 3", email: "email 3"}
             ],
+            /**
+             * Функция отправки запроса на сервер
+             * @param method
+             * @param params
+             * @param success
+             */
             rpc2: function(method, params, success){
                 var answer = {
                     jsonrpc: "2.0",

@@ -43,7 +43,7 @@
             <div>{{label.name}}</div>
         </div>
         <?php
-        include 'tpl/proj-list2.php';
+        include 'tpl/proj-list.php';
         include 'tpl/proj-card.php';
         include 'tpl/employee-list.php';
 
